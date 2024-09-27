@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<!-- Stil tanımlamaları -->
+<style>
+    body {
+        background-color: #f4f6f9; /* Hafif gri arka plan ile daha profesyonel görünüm */
+        font-family: 'Roboto', sans-serif;
+    }
+
+
+    /* Kart stili */
+    .custom-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        padding: 2rem;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 10px; /* Daha profesyonel, hafif yuvarlak köşeler */
+        padding: 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Hover sırasında daha hafif yükselme */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Hover sırasında daha belirgin gölge */
+        }
+
+    h2 {
+        font-size: 2rem; /* Daha resmi ve dikkat çekici başlık */
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        color: #0056b3;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+
+    .btn-primary {
+        background-color: #032541; /* Kurumsal mavi ton */
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        color: #ffffff;
+        border-radius: 5px;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        text-decoration: none; /* Alt çizgi yok */
+    }
+
+        .btn-primary:hover {
+            background-color: #ff6347; /* Hover sırasında kırmızı-turuncu ton */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Hover sırasında gölge efekti */
+        }
+</style>
+
+<!-- Sayfa İçeriği -->
+<div class="custom-container">
+    <div class="card">
+        <div class="card-icon">
+            <i class="fas fa-briefcase"></i> <!-- İş simgesi -->
+        </div>
+        <h2>@ViewBag.birimAd birimi için yetkilisiniz</h2>
+        <p>Biriminizin tüm iş süreçlerini bu panel üzerinden yönetebilirsiniz.</p>
+        <a href="@Url.Action("Ata", "Yonetici")" class="btn-primary">Başlayın</a>
+    </div>
+</div>
+
+<!-- FontAwesome İkonları -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>

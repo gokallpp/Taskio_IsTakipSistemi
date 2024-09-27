@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İş Takip Çalışan</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            background-color: #032541; /* Hafif açık gri arka plan */
+            color: #333; /* Metin rengini daha profesyonel ve sade yapmak için */
+        }
+
+        .navbar {
+            background-color: #032541; /* Koyu gri arka plan (Bootstrap'in dark sınıfına benzer) */
+            padding: 0.75rem 1rem; /* Üst ve alt boşlukları ayarlamak için */
+        }
+
+        .navbar-brand {
+            font-size: 2rem; /* Başlık boyutunu daha büyük yapalım */
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .navbar-nav {
+            margin-left: auto; /* Menü öğelerini ortalamak için */
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .nav-link {
+            font-size: 1.3rem; /* Menü bağlantılarını biraz daha büyütelim */
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+        }
+
+            .nav-link:hover {
+                color: #ffc107; /* Üzerine gelince altın sarısı */
+            }
+
+        .btn-danger {
+            font-size: 1rem; /* Çıkış butonunun boyutu */
+            padding: 0.4rem 1rem; /* Çıkış butonu boşlukları */
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" href="İş Takip Çalışan" asp-controller="Home" asp-action="Index">Taskio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-md-flex justify-content-center">
+                    <!-- Orta hizalama için d-md-flex ve justify-content-center ekledik -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink("Anasayfa", "Index", "Calisan", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("İş Tamamla", "Yap", "Calisan", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("İş Takip", "Takip", "Calisan", new { }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="d-flex nav-item">
+                            @Html.ActionLink("Çıkış", "Index", "Logout", new { }, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+        <main role="main" class="container">
+            @RenderBody()
+        </main>
+    </header>
+</body>
+</html>

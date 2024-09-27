@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Hafif gri arka plan */
+        font-family: 'Roboto', sans-serif; /* Modern ve profesyonel yazı tipi */
+        line-height: 1.6;
+    }
+
+    /* Yeşil tonları */
+    .bg-primary {
+        background-color: #032541 !important;
+    }
+
+    .text-primary {
+        color: #032541 !important;
+    }
+
+    .btn-outline-primary {
+        color: #032541;
+        border-color: #032541;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #032541;
+            color: white;
+        }
+
+    /* Kart düzenlemeleri */
+    .card {
+        border-radius: 12px; /* Hafif yuvarlatılmış köşeler */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 1.5rem;
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Hover durumunda kartın yukarı çıkması */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Hover durumunda daha güçlü gölge */
+    }
+
+    .card-header {
+        font-weight: 600;
+        font-size: 1.3rem;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        background-color: #032541; /* Kart başlığı rengi */
+        color: white;
+    }
+
+    .card-body {
+        padding: 1rem;
+        background-color: #fff; /* Kart içeriği arka planı */
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        border: none; /* Kart içeriklerindeki kenarları kaldırdım */
+        border-bottom: 1px solid #f0f0f0; /* Hafif alt kenar */
+    }
+
+    .list-group-item:last-child {
+        border-bottom: none; /* Son öğeye alt kenarlık ekleme */
+    }
+
+    .alert {
+        font-size: 1.1rem;
+        text-align: center;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background-color: #e9ecef;
+        color: #6c757d;
+    }
+
+    .container {
+        max-width: 1140px; /* Konteyner genişliği */
+        margin: auto; /* Ortalama */
+    }
+
+    .header-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #032541;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    /* Mobil uyum için medya sorguları */
+    media (max-width: 768px) {
+        .header-title {
+            font-size: 1.5rem;
+        }
+
+        .card {
+            width: 100%; /* Mobilde tam genişlik */
+        }
+
+        .row {
+            justify-content: center; /* Mobilde kartları ortala */
+        }
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="m-3">
+        <h3 class="header-title">@ViewBag.personel.personelAdSoyad'nin İşleri</h3>
+    </div>
+
+    <div class="row">
+        @if (ViewBag.isSayisi != 0)
+        {
+            foreach (var i in ViewBag.isler)
+            {
+                <div class="col-md-4">
+                    <!-- Her bir kartı 4 sütun genişliğinde yap -->
+                    <div class="card">
+                        <div class="card-header">
+                            @i.isAd
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <strong>Açıklama:</strong> @i.isAciklama
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>İletilen Tarih:</strong> @i.iletilenTarih.ToString("dd MMMM yyyy hh:mm")
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Yapılan Tarih:</strong> @(i.yapilanTarih != null ? i.yapilanTarih.ToString("dd MMMM yyyy hh:mm") : "Henüz Girilmedi")
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Durum:</strong> @i.Durumlar.durumAd
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Yorum:</strong> @i.isYorum
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert">
+                Henüz İş Verilmedi
+            </div>
+        }
+    </div>
+</div>

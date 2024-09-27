@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Yap";
+    Layout = "~/Views/Shared/_LayoutCalisan.cshtml";
+}
+
+<!-- Sayfanın genel arka plan ve stil ayarları -->
+<style>
+    body {
+        background-color: #e6e6fa; /* Hafif gri-mavi arka plan */
+    }
+
+    .card-header {
+        background-color: #032541; /* Yeşil başlık arka planı */
+        color: #fff; /* Beyaz başlık rengi */
+        font-size: 1.5rem; /* Başlık boyutu */
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .card-body {
+        background-color: #f8f9fa; /* Açık gri arka plan */
+    }
+
+    .card {
+        border-radius: 0.5rem; /* Yuvarlak köşeler */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Kart gölgesi */
+    }
+
+    .form-control {
+        border-radius: 0.25rem; /* Input'lar için yuvarlak köşeler */
+        padding: 1rem; /* Daha geniş padding */
+    }
+
+    .btn-success {
+        background-color: #032541; 
+        border-color: #032541; 
+    }
+
+        .btn-success:hover {
+            background-color: #032541; /* Hover'da koyu yeşil */
+            border-color: #032541; /* Hover'da koyu sınır */
+        }
+
+    .card-footer {
+        background-color: #fff;
+        border-top: none;
+    }
+
+    /* İş açıklaması için özel stil */
+    .is-aciklama-box {
+        background-color: #eaf3fc; /* Açık mavi arka plan */
+        border-left: 5px solid #17a2b8; /* Sol kenarda yeşil şerit */
+        padding: 1.5rem;
+        border-radius: 0.25rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        line-height: 1.6; /* Daha rahat okuma için satır yüksekliği */
+    }
+
+        .is-aciklama-box strong {
+            font-weight: bold;
+            color: #007bff; /* Vurgu için koyu mavi */
+        }
+</style>
+
+<div class="container my-5">
+    @foreach (var i in ViewBag.isler)
+    {
+        using (Html.BeginForm("Yap", "Calisan", FormMethod.Post))
+        {
+            <div class="card shadow-lg mb-4">
+                <div class="card-header">
+                    <h4>@i.isAd</h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <input type="hidden" name="isId" value="@i.isId" />
+
+                    <!-- İş Açıklaması için güzel bir kutu tasarımı -->
+                    <div class="is-aciklama-box">
+                        <strong>İş Açıklaması:</strong>
+                        <p>@i.isAciklama</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="isYorum" class="form-label">Yorum Giriniz</label>
+                        <input type="text" class="form-control" id="isYorum" name="isYorum" placeholder="Yorumunuzu buraya giriniz: " />
+                    </div>
+                </div>
+
+                <div class="card-footer text-center">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fas fa-check-circle me-2"></i> Tamamla
+                    </button>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<!-- FontAwesome Kit for Icons (only include if not already added in your project) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

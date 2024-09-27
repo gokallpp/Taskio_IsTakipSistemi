@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCalisan.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f1f3f5; /* Daha açık arka plan rengi */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+        line-height: 1.6; /* Satır yüksekliği */
+    }
+
+
+    .text-primary {
+        color: #032541 !important;
+    }
+
+    .bg-primary {
+        background-color: #032541 !important;
+    }
+
+    .btn-outline-primary {
+        color: #032541; /* Buton yazısı yeşil */
+        border-color: #032541; /* Buton sınırı yeşil */
+        transition: background-color 0.3s, color 0.3s; /* Geçiş efekti */
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #032541; /* Hover'da buton arka planı yeşil */
+            color: #fff; /* Hover'da buton yazısı beyaz */
+        }
+
+    .bg-light {
+        background-color: #f8f9fa !important; /* Hafif gri arka plan */
+    }
+
+    .lead {
+        font-size: 1.25rem; /* Açıklama metni biraz büyütüldü */
+        color: #495057; /* Açıklama metni rengi */
+    }
+
+    .display-4 {
+        font-size: 2.5rem; /* Başlık daha büyük */
+    }
+
+    .card {
+        border-radius: 1rem; /* Kartların yuvarlak köşeleri */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+        transition: transform 0.3s; /* Hover geçiş efekti */
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Hover efekti */
+        }
+
+    .card-header {
+        border-top-left-radius: 1rem; /* Kart başlık köşeleri */
+        border-top-right-radius: 1rem; /* Kart başlık köşeleri */
+    }
+
+    .row {
+        margin: 0; /* Satır içi boşlukları kaldır */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+            <h1 class="display-4 fw-bold text-primary">Muhasebe Birimi İçin İş Listesi</h1>
+            <p class="lead text-muted">Bu sayfada size atanan görevleri görüntüleyebilir ve durumu güncelleyebilirsiniz.</p>
+            <hr class="my-4" />
+        </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+        @foreach (var i in ViewBag.isler)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                @using (Html.BeginForm("Index", "Calisan", FormMethod.Post))
+                {
+                    <div class="card shadow-sm h-100 border-0 rounded-3">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h5 class="fw-bold">Yeni Görev: @i.isAd</h5>
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between text-center">
+                            <input type="hidden" name="isId" value="@i.isId" />
+                            <div class="mb-3">
+                                <p class="fs-6 text-muted">Yöneticinizden yeni bir görev aldınız. Lütfen zamanında tamamlayın.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <button type="submit" class="btn btn-outline-primary btn-lg">Okundu Olarak İşaretle</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

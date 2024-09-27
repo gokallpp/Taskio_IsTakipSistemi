@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Takip";
+    Layout = "~/Views/Shared/_LayoutCalisan.cshtml";
+}
+
+@model IsTakipSistemi.Models.IsDurumModel
+
+<!-- Sayfanın genel arka plan ve stil ayarları -->
+<style>
+    body {
+        background-color: #e6e6fa; /* Hafif gri-mavi arka plan */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+        line-height: 1.6; /* Satır yüksekliği */
+    }
+
+    .card-header {
+        background-color: #032541; /* Başlık arka plan rengi */
+        color: #fff; /* Başlık metin rengi */
+        font-size: 1.5rem; /* Başlık boyutu */
+        font-weight: bold;
+        text-align: center;
+        border-top-left-radius: 0.5rem; /* Yuvarlak köşeler */
+        border-top-right-radius: 0.5rem; /* Yuvarlak köşeler */
+    }
+
+    .card-body {
+        background-color: #f8f9fa; /* Açık gri arka plan */
+        border-bottom-left-radius: 0.5rem; /* Yuvarlak köşeler */
+        border-bottom-right-radius: 0.5rem; /* Yuvarlak köşeler */
+        padding: 1.5rem; /* Kart içindeki alan */
+    }
+
+    .card {
+        border-radius: 0.5rem; /* Kart yuvarlak köşeler */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+        margin-bottom: 1.5rem; /* Kartlar arasında boşluk */
+        transition: transform 0.2s; /* Geçiş efekti */
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Hover efekti */
+        }
+
+    .list-group-item {
+        border: none; /* Liste öğeleri arasındaki sınırları kaldır */
+        padding: 1rem; /* Daha geniş padding */
+        background-color: transparent; /* Şeffaf arka plan */
+        transition: background-color 0.3s; /* Geçiş efekti */
+    }
+
+        .list-group-item:hover {
+            background-color: #e0f7fa; /* Hover durumu için açık mavi arka plan */
+        }
+
+    /* Belirginlik için stil ayarları */
+    .highlight {
+        background-color: #d4edda; /* Açık yeşil arka plan */
+        border-left: 5px solid #28a745; /* Sol kenarda yeşil çizgi */
+        font-weight: bold; /* Kalın font */
+    }
+
+    .list-group-item:last-child {
+        border-bottom: none; /* Son öğenin altındaki sınırı kaldır */
+    }
+
+    .empty-comment {
+        color: #6c757d; /* Gri renk */
+        font-style: italic; /* İtalik stil */
+    }
+</style>
+
+<div class="container mt-5">
+    @foreach (var isDurum in Model.isDurumlar)
+    {
+        <div class="card shadow-lg">
+            <div class="card-header">
+                @isDurum.isAd
+            </div>
+
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@isDurum.isAciklama</li>
+                    <li class="list-group-item">İletilen Tarih : @isDurum.iletilenTarih</li>
+                    <li class="list-group-item">Yapılan Tarih : @isDurum.yapilanTarih</li>
+                    <li class="list-group-item">İş Durumu : @isDurum.durumAd</li>
+                    <li class="list-group-item">İş Yorumu : @isDurum.isYorum</li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>

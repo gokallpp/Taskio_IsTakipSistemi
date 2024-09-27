@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "İş Ata";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml"; // Yönetici layout'u kullanılıyor
+}
+
+<style>
+    /* Genel Kart ve Form Stili */
+    .card {
+        border-radius: 1rem; /* Daha fazla yuvarlatılmış köşeler */
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Hafif ama belirgin gölge */
+        border: none;
+        transition: transform 0.3s, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Hover durumunda yukarı çıkma efekti */
+        box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15); /* Daha güçlü gölge */
+    }
+
+    .card-header {
+        background-color: #032541; /* Lacivert tonları */
+        color: #ffffff; /* Beyaz yazı */
+        padding: 1.5rem; /* Daha fazla boşluk */
+        font-size: 1.4rem;
+        font-weight: bold;
+        border-bottom: 3px solid #1ABC9C; /* Başlık altına daha kalın yeşil çizgi */
+    }
+
+    .card-body {
+        background-color: #f9f9f9; /* Daha hafif gri kart içi */
+        padding: 2.5rem; /* İçeriğe daha fazla boşluk */
+    }
+
+    /* Form Elemanları */
+    .form-floating label {
+        color: #2C3E50; /* Daha koyu başlıklar */
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .form-control, .form-select {
+        border: 1px solid #ccc; /* Hafif gri sınır */
+        border-radius: 0.4rem; /* Hafif yuvarlatılmış köşeler */
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #1ABC9C; /* Odaklanma sırasında yeşil kenar */
+        box-shadow: 0 0 10px rgba(26, 188, 156, 0.4); /* Hafif yeşil gölge */
+    }
+
+    /* Buton Stili */
+    .btn-primary {
+        background-color: #1ABC9C; /* Canlı yeşil buton */
+        border-color: #16A085;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 0.75rem 1.5rem; /* Butonlara genişlik katıldı */
+        border-radius: 0.3rem; /* Hafif yuvarlatılmış butonlar */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Yumuşak geçiş */
+    }
+
+    .btn-primary:hover {
+        background-color: #16A085; /* Hover sırasında koyu yeşil */
+        box-shadow: 0px 10px 25px rgba(22, 160, 133, 0.4); /* Hover sırasında gölge */
+    }
+
+    /* Başlık ikonunun konumlandırılması */
+    .card-header .fas {
+        margin-left: 10px;
+        font-size: 1.5rem;
+    }
+
+    /* FontAwesome Icon Stili */
+    .fas {
+        color: #ffffff; /* İkon rengi beyaz */
+    }
+
+    /* Mobil uyum için medya sorguları */
+    media (max-width: 768px) {
+        .card-header, .btn-primary {
+            font-size: 1.1rem; /* Küçük ekranlarda font boyutları küçültülüyor */
+        }
+
+        .card-body {
+            padding: 1.5rem; /* Daha küçük padding */
+        }
+    }
+</style>
+
+<!-- İş atama formu -->
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">@ViewBag.birimAd birimi için İş Atama İşlemi</h5>
+            <i class="fas fa-tasks fa-lg"></i>
+        </div>
+        <div class="card-body p-4">
+            <!-- Formun oluşturulması -->
+            @using (Html.BeginForm("Ata", "Yonetici", FormMethod.Post))
+            {
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="isAd" name="isAd" placeholder="İş Başlığını Giriniz" required>
+                    <label for="isAd">İş Başlığı</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <textarea class="form-control" id="isAciklama" name="isAciklama" placeholder="İş Açıklamasını Giriniz" style="height: 120px;" required></textarea>
+                    <label for="isAciklama">İş Açıklaması</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <select class="form-select" name="selectPer" id="selectPer" required>
+                        <option value="" disabled selected>Personel Seçiniz</option>
+                        @foreach (var personel in ViewBag.personeller)
+                        {
+                            <option value="@personel.personelId">@personel.personelAdSoyad</option>
+                        }
+                    </select>
+                    <label for="selectPer">Yönlendirilecek Personel</label>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i> İşi Yönlendir
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
